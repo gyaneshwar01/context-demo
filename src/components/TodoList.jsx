@@ -1,29 +1,11 @@
 import { useContext } from "react";
 import { TodoContext } from "../context/todoContext";
+import SingleTodo from "./SingleTodo";
 
 const TodoList = () => {
-  const { todos, removeTodo, toggleTodo } = useContext(TodoContext);
+  const { todos } = useContext(TodoContext);
 
-  return todos.map((todo) => (
-    <div key={todo.id} className="todo">
-      <div
-        className="todoText"
-        style={{
-          textDecoration: todo.isCompleted ? "line-through" : "none",
-        }}
-      >
-        {todo.text}
-      </div>
-      <div className="todoButtons">
-        <button className="todoButton" onClick={() => toggleTodo(todo.id)}>
-          {todo.isCompleted ? "Undo" : "Complete"}
-        </button>
-        <button className="todoButton" onClick={() => removeTodo(todo.id)}>
-          Delete
-        </button>
-      </div>
-    </div>
-  ));
+  return todos.map((todo) => <SingleTodo key={todo.id} todo={todo} />);
 };
 
 export default TodoList;

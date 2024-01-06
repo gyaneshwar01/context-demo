@@ -21,8 +21,16 @@ const TodoContextProvider = ({ children }) => {
     );
   };
 
+  const updateTodo = (updatedTodo) => {
+    setTodos(
+      todos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo))
+    );
+  };
+
   return (
-    <TodoContext.Provider value={{ todos, addTodo, removeTodo, toggleTodo }}>
+    <TodoContext.Provider
+      value={{ todos, addTodo, removeTodo, toggleTodo, updateTodo }}
+    >
       {children}
     </TodoContext.Provider>
   );
